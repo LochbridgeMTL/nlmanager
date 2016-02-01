@@ -1,0 +1,28 @@
+{
+  "name": "nlmanager",
+  "version": "0.1.0",
+  "description": "Newsletter manager web application made with ReactJS and Skeleton",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd dist ; node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fredlochbridge/nlmanager"
+  },
+  "author": "Fred Leclerc",
+  "license": "MIT",
+  "homepage": "http://lochbridge.com",
+  "devDependencies": {
+    "babel-preset-react": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "gulp": "^3.9.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-shell": "^0.5.1",
+    "jquery": "^2.2.0",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6"
+  }
+}

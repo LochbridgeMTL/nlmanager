@@ -1,0 +1,52 @@
+#header {
+  position: fixed;
+  height: 49px;
+  top: 0px;
+  width: 100%;
+  z-index: 1000;
+  background-color: #DEDEDE;
+  border-bottom: solid #333333 1px;
+}
+
+#contextual {
+  position: fixed;
+  height: 27px;
+  top: 50px;
+  width: 100%;
+  z-index: 1000;
+  background-color: #999999;
+  border-bottom: solid #333333 1px;
+}
+
+#main-layout {
+  position: absolute;
+  top: 78px;
+  bottom: 24px;
+  left: 0px;
+  right: 0px;
+  overflow-y: scroll;
+}
+
+#footer {
+  text-align: center;
+  background-color: #DEDEDE;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: solid #CCCCCC 1px;
+}
+
+.darkIcon {
+  color: #999999;
+}
+
+.lightLink {
+  color: #DEDEDE;
+  text-decoration: none;
+}
+
+.loginInput {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
