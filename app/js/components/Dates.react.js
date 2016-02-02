@@ -65,13 +65,10 @@ var Dates = React.createClass({
   },
 
   render: function() {
-    // var currentDate = "Current newsletter : " + DateFormat(this.getCurrentNewsletterDate(), "mm / dd / yyyy");
-    // var remaining = this.getDeadline();
-    // var currentDeadline = "Remaining : " + remaining.hours + " h " + remaining.minutes + " min " + remaining.seconds + " sec";
     return(
       <div className="row">
         <div className="twelve columns">
-          <span>{this.state.currentDate}</span><br/>
+          <h5 style={{"marginBottom":"0px", "marginTop": "12px"}}>{this.state.currentDate}</h5>
           <span>{this.state.currentDeadline}</span>
         </div>
       </div>
