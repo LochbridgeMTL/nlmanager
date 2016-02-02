@@ -9,8 +9,8 @@ var Buttons = React.createClass({
       <div className="row">
         <div className="six columns">&nbsp;</div>
         <div className="six columns">
-          <a className="button button-primary" href="#">Test</a>&nbsp;
-          <a className="button button-primary" href="#">Save</a>
+          <div className="u-pull-right" style={{"marginLeft":"12px"}}><a className="button button-primary" href="#">Test</a></div>
+          <div className="u-pull-right"><a className="button button-primary" href="#">Save</a></div>
         </div>
       </div>
     )
