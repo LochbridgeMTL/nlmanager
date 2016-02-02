@@ -9,7 +9,7 @@ gulp.task('clean', shell.task([
 );
 
 gulp.task('copy', shell.task([
-    'cp -rfv app/index.html app/css app/images app/fonts dist'
+    'cp -rfv app/index.html app/css app/images app/fonts app/collaborators.json dist'
   ])
 );
 
