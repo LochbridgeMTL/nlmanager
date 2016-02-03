@@ -9,10 +9,11 @@ var DropdownInput = React.createClass({
   authors: [],
 
   getInitialState: function() {
-    return {full: false, currentImage: null}
+    return {loaded: false}
   },
 
   componentDidMount: function() {
+
     var _this = this;
     $.ajax({
       url: 'collaborators.json',
@@ -27,7 +28,7 @@ var DropdownInput = React.createClass({
         var fullname = data.responseJSON[i].lastname + ", " + data.responseJSON[i].firstname;
         _this.authors.push(<option value={i} key={_this.props.id + '-' + i}>{fullname}</option>);
       }
-      _this.setState({full: true});
+      _this.setState({loaded: true});
     });
 
   },
@@ -49,22 +50,23 @@ var DropdownInput = React.createClass({
   },
 
   render: function() {
-    var img = 'http://cdn.theladders.net/static/images/emails/wednesday_newsletter/' + ((this.state.currentImage == null) ? 'joe_amodei_90_90.png' : this.state.currentImage);
-    var display = (this.state.currentImage == null) ? 'none' : 'inline';
-    var style = {"marginLeft":"18px", "borderRadius":"50%", "display":display};
-    return (
-      <div>
-        <label htmlFor={this.props.id}>Author</label>
-        <select id={this.props.id} onChange={this.handleOptionSelect}>
-          {this.authors}
-        </select>
-        <img
-          src={img}
-          width="90"
-          height="90"
-          style={style} />
-      </div>
-    )
+    if(this.state.loaded) {
+      console.log(this.props.selected);
+      var img = 'http://cdn.theladders.net/static/images/emails/wednesday_newsletter/' + this.state.currentImage;
+      var display = (this.state.currentImage == null) ? 'none' : 'inline';
+      var style = {"marginLeft":"18px", "borderRadius":"50%", "display":display};
+      return (
+        <div>
+          <label htmlFor={this.props.id}>Author</label>
+          <select id={this.props.id} onChange={this.handleOptionSelect}>
+            {this.authors}
+          </select>
+          <img src={img} width="90" height="90" style={style} />
+        </div>
+      )
+    } else {
+      return null;
+    }
   }
 
 });

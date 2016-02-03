@@ -7,14 +7,13 @@ var DropdownInput = require('./DropdownInput.react');
 var Article = React.createClass({
 
   render: function() {
-    var ddownId = "author-" + this.props.index;
     return (
       <div className="articleContainer">
         <h5>Article {this.props.index}</h5>
-        <DropdownInput id={ddownId} />
-        <TextInput label="Title" id="title" />
-        <TextInput label="Description" id="desc" />
-        <TextInput label="Link" id="link" />
+        <DropdownInput id={'author-' + this.props.index} selected={this.props.author} />
+        <TextInput label="Title" id={'title-' + this.props.index} value={this.props.title} />
+        <TextInput label="Description" id={'desc-'  + this.props.index} value={this.props.description} />
+        <TextInput label="Link" id={'link-' + this.props.index} value={this.props.link} />
       </div>
     )
   }

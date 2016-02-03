@@ -10,24 +10,33 @@ var Content = React.createClass({
 
   articles: [],
 
-  componentWillMount: function() {
-    this.articles.push(<Article index="1" key="1" />);
-    this.articles.push(<Article index="2" key="2" />);
-    this.articles.push(<Article index="3" key="3" />);
-    this.articles.push(<Article index="4" key="4" />);
-  },
-
   render: function() {
+
+    this.articles = [];
+    for(var i in this.props.articles) {
+      var index = parseInt(i) + 1;
+      this.articles.push(
+        <Article
+          index={index}
+          key={index}
+          title={this.props.articles[i].title}
+          description={this.props.articles[i].description}
+          link={this.props.articles[i].link}
+          author={this.props.articles[i].author}
+        />);
+    }
+
     return (
       <div id="main-layout">
         <div className="container">
           <Dates />
           <Buttons />
-          <Subject />
+          <Subject value={this.props.subject} />
           {this.articles}
         </div>
       </div>
     )
+
   }
 
 });
