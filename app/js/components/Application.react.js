@@ -25,13 +25,15 @@ var Application = React.createClass({
       _this.newsletter.articles = [];
       var rawArticles = data.responseJSON.content.split('\n');
       for(var n in rawArticles) {
-        var fields = rawArticles[n].split("|");
-        _this.newsletter.articles.push({
-          title: fields[0],
-          author: fields[1],
-          description: fields[2],
-          link: fields[3]
-        });
+        if(rawArticles[n] != "") {
+          var fields = rawArticles[n].split("|");
+          _this.newsletter.articles.push({
+            title: fields[0],
+            author: fields[1],
+            description: fields[2],
+            link: fields[3]
+          });
+        }
       }
       _this.setState({loaded: true});
     });

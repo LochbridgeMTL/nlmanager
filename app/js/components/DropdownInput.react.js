@@ -45,23 +45,40 @@ var DropdownInput = React.createClass({
 
   handleOptionSelect: function() {
     var index = $('#' + this.props.id).val();
-    console.log("Option in " + this.props.id + " selected ... " + this.authorList[index].img);
     this.setState({currentImage: this.authorList[index].img});
+  },
+
+  getDefaultValue: function() {
+
+    for(var i in this.authors) {
+      var toCompare = this.authors[i].props.children.split(", ")[1] + " " + this.authors[i].props.children.split(", ")[0];
+      if(toCompare == this.props.selected) {
+        return (this.authors[i].props.value);
+      }
+    }
+    console.error("No match for " + this.props.selected);
+    return 0;
+
   },
 
   render: function() {
     if(this.state.loaded) {
-      console.log(this.props.selected);
-      var img = 'http://cdn.theladders.net/static/images/emails/wednesday_newsletter/' + this.state.currentImage;
-      var display = (this.state.currentImage == null) ? 'none' : 'inline';
-      var style = {"marginLeft":"18px", "borderRadius":"50%", "display":display};
+
+      var defaultValue = this.getDefaultValue();
+      var img = "";
+      if(this.state.currentImage == undefined) {
+        img = 'http://cdn.theladders.net/static/images/emails/wednesday_newsletter/' + this.authorList[defaultValue].img;
+      } else {
+        img = 'http://cdn.theladders.net/static/images/emails/wednesday_newsletter/' + this.state.currentImage;
+      }
+
       return (
         <div>
           <label htmlFor={this.props.id}>Author</label>
-          <select id={this.props.id} onChange={this.handleOptionSelect}>
+          <select id={this.props.id} onChange={this.handleOptionSelect} defaultValue={defaultValue}>
             {this.authors}
           </select>
-          <img src={img} width="90" height="90" style={style} />
+          <img src={img} width="90" height="90" style={{"marginLeft":"18px", "borderRadius":"50%"}} />
         </div>
       )
     } else {
