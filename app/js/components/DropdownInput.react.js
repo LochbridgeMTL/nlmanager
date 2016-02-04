@@ -46,6 +46,7 @@ var DropdownInput = React.createClass({
   handleOptionSelect: function() {
     var index = $('#' + this.props.id).val();
     this.setState({currentImage: this.authorList[index].img});
+    this.props.onInputChange({id: this.props.id, value: this.authorList[index].firstname + " " + this.authorList[index].lastname});
   },
 
   getDefaultValue: function() {

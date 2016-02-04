@@ -8,14 +8,36 @@ var Article = require('./Article.react');
 
 var Content = React.createClass({
 
-  articles: [],
+  getInitialState: function() {
+    this.articleComponents = [];
+    this.articleData = [];
+    this.subjectline = "";
+    return null;
+  },
+
+  handleOnSaveClick: function() {
+    console.log("Save clicked ... ");
+    console.log(this.subjectline);
+    console.log(this.articleData);
+  },
+
+  handleOnTestClick: function() {
+    console.log("Test clicked ... ");
+  },
+
+  handleArticleChange: function(data) {
+    this.articleData[parseInt(data.index) - 1] = data;
+  },
+
+  handleSubjectChange: function(data) {
+    this.subjectline = data;
+  },
 
   render: function() {
 
-    this.articles = [];
     for(var i in this.props.articles) {
       var index = parseInt(i) + 1;
-      this.articles.push(
+      this.articleComponents.push(
         <Article
           index={index}
           key={index}
@@ -23,16 +45,23 @@ var Content = React.createClass({
           description={this.props.articles[i].description}
           link={this.props.articles[i].link}
           author={this.props.articles[i].author}
+          onArticleChange={this.handleArticleChange}
         />);
+      this.articleData.push({
+        title: this.props.articles[i].title,
+        description: this.props.articles[i].description,
+        link: this.props.articles[i].link,
+        author: this.props.articles[i].author
+      });
     }
 
     return (
       <div id="main-layout">
         <div className="container">
           <Dates />
-          <Buttons />
-          <Subject value={this.props.subject} />
-          {this.articles}
+          <Buttons onSaveClick={this.handleOnSaveClick} onTestClick={this.handleOnTestClick} />
+          <Subject onSubjectChange={this.handleSubjectChange} value={this.props.subject} />
+          {this.articleComponents}
         </div>
       </div>
     )
