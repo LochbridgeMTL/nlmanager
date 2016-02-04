@@ -33,6 +33,10 @@ var Content = React.createClass({
     this.subjectline = data;
   },
 
+  componentDidMount: function() {
+    this.subjectline = this.props.subject;
+  },
+
   render: function() {
 
     for(var i in this.props.articles) {
