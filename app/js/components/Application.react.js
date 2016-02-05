@@ -49,13 +49,40 @@ var Application = React.createClass({
 
   handleTestClick: function(data) {
     alert("Test sent successfully")
+    var _this = this;
+    $.ajax({
+      url: 'http://localhost:8080/testwnl',
+      type: 'POST',
+      dataType: 'json',
+      data: '{"jobseekerId":"' + data + '"}'
+    }).complete(function(data){
+      console.log(data);
+    });
     this.setState({modal: false});
   },
 
   handleOnSaveClick: function(subject, articleData) {
-    console.log("save");
-    console.log(subject);
-    console.log(articleData);
+    var content = this.formatContent(articleData);
+    var wnlData = '{"subject":"' + subject + '", "content": "' + content + '"}';
+    // console.log(wnlData);
+    var _this = this;
+    $.ajax({
+      url: 'http://localhost:8080/postwnl',
+      type: 'POST',
+      dataType: 'json',
+      data: wnlData
+    }).complete(function(data){
+      console.log(data);
+    });
+
+  },
+
+  formatContent: function(articleData) {
+    var content = "";
+    for(var i in articleData) {
+      content += articleData[i].title + "|" + articleData[i].author + "|" + articleData[i].description + "|" + articleData[i].link + "\n"
+    }
+    return content;
   },
 
   render: function () {
