@@ -5,13 +5,13 @@ var $ = require('jquery');
 var Header = require('./Header.react');
 var Content = require('./Content.react');
 var Footer = require('./Footer.react');
+var IdInput = require('./IdInput.react');
 
 var Application = React.createClass({
 
-  newsletter: {},
-
   getInitialState: function() {
-    return({loaded: false})
+    this.newsletter = {};
+    return({loaded: false, modal: false})
   },
 
   componentDidMount: function() {
@@ -39,17 +39,35 @@ var Application = React.createClass({
     });
   },
 
+  handleOnTestClick: function() {
+    console.log("On test click in application ... ");
+    this.setState({modal: true});
+  },
+
+  handleCancelClick: function() {
+    this.setState({modal: false});
+  },
+
+  handleTestClick: function(data) {
+    console.log("Test id sent ... " + data);
+    this.setState({modal: false});
+  },
+
   render: function () {
     if(!this.state.loaded) {
       return (<h3>Loading ... </h3>)
     } else {
-      return (
-        <div>
-          <Header />
-          <Content subject={this.newsletter.subject} articles={this.newsletter.articles} />
-          <Footer />
-        </div>
-      )
+      if(this.state.modal) {
+        return (<IdInput onCancel={this.handleCancelClick} onTest={this.handleTestClick} />)
+      } else {
+        return (
+          <div>
+            <Header />
+            <Content onTestClick={this.handleOnTestClick} subject={this.newsletter.subject} articles={this.newsletter.articles} />
+            <Footer />
+          </div>
+        )
+      }
     }
   }
 

@@ -22,7 +22,7 @@ var Content = React.createClass({
   },
 
   handleOnTestClick: function() {
-    console.log("Test clicked ... ");
+    this.props.onTestClick();
   },
 
   handleArticleChange: function(data) {

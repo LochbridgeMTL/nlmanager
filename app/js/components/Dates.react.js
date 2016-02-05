@@ -58,9 +58,11 @@ var Dates = React.createClass({
   componentDidMount: function() {
     var _this = this;
     setInterval(function(){
-      _this.setState(
-        {currentDeadline: _this.getFormattedDeadline()}
-      )
+      if(_this.isMounted()) {
+        _this.setState(
+          {currentDeadline: _this.getFormattedDeadline()}
+        )
+      }
     }, 1000);
   },
 
