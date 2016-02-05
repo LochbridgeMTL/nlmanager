@@ -17,8 +17,7 @@ var Content = React.createClass({
 
   handleOnSaveClick: function() {
     console.log("Save clicked ... ");
-    console.log(this.subjectline);
-    console.log(this.articleData);
+    this.props.onSaveClick(this.subjectline, this.articleData);
   },
 
   handleOnTestClick: function() {

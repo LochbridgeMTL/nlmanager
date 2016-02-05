@@ -40,7 +40,6 @@ var Application = React.createClass({
   },
 
   handleOnTestClick: function() {
-    console.log("On test click in application ... ");
     this.setState({modal: true});
   },
 
@@ -49,8 +48,14 @@ var Application = React.createClass({
   },
 
   handleTestClick: function(data) {
-    console.log("Test id sent ... " + data);
+    alert("Test sent successfully")
     this.setState({modal: false});
+  },
+
+  handleOnSaveClick: function(subject, articleData) {
+    console.log("save");
+    console.log(subject);
+    console.log(articleData);
   },
 
   render: function () {
@@ -63,7 +68,11 @@ var Application = React.createClass({
         return (
           <div>
             <Header />
-            <Content onTestClick={this.handleOnTestClick} subject={this.newsletter.subject} articles={this.newsletter.articles} />
+            <Content
+              onSaveClick={this.handleOnSaveClick}
+              onTestClick={this.handleOnTestClick}
+              subject={this.newsletter.subject}
+              articles={this.newsletter.articles} />
             <Footer />
           </div>
         )
