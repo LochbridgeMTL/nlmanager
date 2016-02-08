@@ -17,7 +17,7 @@ var Application = React.createClass({
   componentDidMount: function() {
     var _this = this;
     $.ajax({
-      url: 'http://127.0.0.1:8080/getwnl',
+      url: '//fleclerc.laddersoffice.net:8080/getwnl',
       type: 'GET',
       dataType: 'json',
     }).complete(function(data){
@@ -51,7 +51,7 @@ var Application = React.createClass({
     alert("Test sent successfully")
     var _this = this;
     $.ajax({
-      url: 'http://localhost:8080/testwnl',
+      url: '//fleclerc.laddersoffice.net:8080/testwnl',
       type: 'POST',
       dataType: 'json',
       data: '{"jobseekerId":"' + data + '"}'
@@ -64,13 +64,14 @@ var Application = React.createClass({
   handleOnSaveClick: function(subject, articleData) {
     var content = this.formatContent(articleData);
     var wnlData = '{"subject":"' + subject + '", "content": "' + content + '"}';
-    // console.log(wnlData);
     var _this = this;
+
     $.ajax({
-      url: 'http://localhost:8080/postwnl',
+      url: '//fleclerc.laddersoffice.net:8080/postwnl',
+      dataType: "json",
+      contentType: "application/json;charset=utf-8",
       type: 'POST',
-      dataType: 'json',
-      data: wnlData
+      data: wnlData,
     }).complete(function(data){
       console.log(data);
     });
