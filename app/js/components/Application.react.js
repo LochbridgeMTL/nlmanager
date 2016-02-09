@@ -48,7 +48,6 @@ var Application = React.createClass({
   },
 
   handleTestClick: function(data) {
-    alert("Test sent successfully")
     var _this = this;
     $.ajax({
       url: '//fleclerc.laddersoffice.net:8080/testwnl',
@@ -58,6 +57,7 @@ var Application = React.createClass({
       data: '{"jobseekerId":"' + data + '"}'
     }).complete(function(data){
       console.log(data);
+      alert("Test sent successfully")
     });
     this.setState({modal: false});
   },
@@ -66,8 +66,6 @@ var Application = React.createClass({
     var content = this.formatContent(articleData);
     var wnlData = '{"subject":"' + subject + '", "content": "' + content + '"}';
     var _this = this;
-
-    console.log(wnlData);
 
     $.ajax({
       url: '//fleclerc.laddersoffice.net:8080/postwnl',

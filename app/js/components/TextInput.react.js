@@ -5,11 +5,25 @@ var $ = require('jquery');
 
 var TextInput = React.createClass({
 
+  getInitialState: function() {
+    return {inError: false}
+  },
+
   onChange: function() {
-    this.props.onInputChange({id: this.props.id, value: $("#" + this.props.id).val()});
+    var value = $("#" + this.props.id).val();
+    if(value == "") {
+      this.setState({inError: true});
+    } else {
+      this.props.onInputChange({id: this.props.id, value: value});
+      this.setState({inError: false});
+    }
   },
 
   render: function() {
+    var style = {};
+    if(this.state.inError) {
+      style = {"backgroundColor":"Red"};
+    }
     return (
       <div>
         <label htmlFor={this.props.id}>{this.props.label} : </label>
@@ -20,6 +34,7 @@ var TextInput = React.createClass({
           placeholder={this.props.label}
           id={this.props.id}
           onChange={this.onChange}
+          style={style}
         />
       </div>
     )
