@@ -52,8 +52,9 @@ var Application = React.createClass({
     var _this = this;
     $.ajax({
       url: '//fleclerc.laddersoffice.net:8080/testwnl',
-      type: 'POST',
       dataType: 'json',
+      contentType: "application/json;charset=utf-8",
+      type: 'POST',
       data: '{"jobseekerId":"' + data + '"}'
     }).complete(function(data){
       console.log(data);
@@ -66,6 +67,8 @@ var Application = React.createClass({
     var wnlData = '{"subject":"' + subject + '", "content": "' + content + '"}';
     var _this = this;
 
+    console.log(wnlData);
+
     $.ajax({
       url: '//fleclerc.laddersoffice.net:8080/postwnl',
       dataType: "json",
@@ -74,6 +77,7 @@ var Application = React.createClass({
       data: wnlData,
     }).complete(function(data){
       console.log(data);
+      alert("Newsletter saved");
     });
 
   },
@@ -81,7 +85,7 @@ var Application = React.createClass({
   formatContent: function(articleData) {
     var content = "";
     for(var i in articleData) {
-      content += articleData[i].title + "|" + articleData[i].author + "|" + articleData[i].description + "|" + articleData[i].link + "\n"
+      content += articleData[i].title + "|" + articleData[i].author + "|" + articleData[i].description + "|" + articleData[i].link + "\\n"
     }
     return content;
   },
